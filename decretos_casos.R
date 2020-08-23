@@ -8,6 +8,7 @@ set.seed(1)
 library(readr)
 library(tidyverse)
 library(googlesheets4)
+library(anchors)
 
 # Bases --------------------------------------------------------------------
 
@@ -45,7 +46,6 @@ decretos_complem$PUBLICACAO <-  c((min(casos$DATA)-14):(min(casos$DATA)-1))
 decretos_complem$PUBLICACAO <- as.Date(decretos_complem$PUBLICACAO, origin = "1970-01-01")
 decretos <- rbind(decretos_complem, decretos) %>% as.data.frame()
 decretos$DECRETO <- NULL
-library(anchors)
 decretos <- replace.value(decretos, names = names(decretos[,-1]), from = "aberto_restricao", to= "aberto", verbose = FALSE)
 
 #Agrupando intervenções que iniciaram e finalizarma no mesmo período
